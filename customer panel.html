@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="app-wrapper">
+    <aside class="sidebar">
+        <h2 style="margin-bottom: 40px;">Mahim Builders</h2>
+        <nav class="side-menu">
+            <a href="#" class="active"><i class="fas fa-home"></i> Browse Homes</a>
+            <a href="#"><i class="fas fa-heart"></i> My Wishlist</a>
+            <a href="#"><i class="fas fa-history"></i> My Inquiries</a>
+            <a href="/logout" style="margin-top: auto;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </nav>
+    </aside>
+    <main class="main-content">
+        <h2 style="margin-bottom: 30px;">Available Projects</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px;">
+            {% for p in properties %}
+            <div class="card">
+                <img src="{{ p.image_url }}" style="width: 100%; height: 200px; object-fit: cover;">
+                <div style="padding: 20px;">
+                    <h3>{{ p.title }}</h3>
+                    <p style="color: #777;">{{ p.location }}</p>
+                    <div style="margin-top: 15px; font-weight: 700; color: var(--primary);">{{ p.price }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+</div>
+{% endblock %}

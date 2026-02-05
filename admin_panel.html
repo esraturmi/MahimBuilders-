@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="app-view">
+    <aside class="sidebar admin-side" style="background: #111;"> <div class="sidebar-header">
+            <h2>Admin Console</h2>
+            <p style="font-size: 11px; opacity: 0.6;">Management Mode</p>
+        </div>
+        <nav class="side-menu">
+            <a href="#" class="active"><i class="fas fa-building"></i> Property List</a>
+            <a href="#"><i class="fas fa-users"></i> Client Leads</a>
+            <a href="#"><i class="fas fa-chart-bar"></i> Sales Report</a>
+            <a href="/logout" style="margin-top: 50px; color: #ff8080;"><i class="fas fa-power-off"></i> Logout</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+            <h2>Project Inventory</h2>
+            <a href="/add-property" style="background: #27ae60; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600;">+ Add New Property</a>
+        </div>
+
+        <table class="admin-table" style="width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+            <thead style="background: #f4f7f6;">
+                <tr>
+                    <th style="padding: 15px;">Project Name</th>
+                    <th style="padding: 15px;">Location</th>
+                    <th style="padding: 15px;">Price</th>
+                    <th style="padding: 15px;">Status</th>
+                    <th style="padding: 15px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for property in properties %}
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 15px; font-weight: 600;">{{ property.name }}</td>
+                    <td style="padding: 15px;">{{ property.location }}</td>
+                    <td style="padding: 15px; color: var(--primary);">{{ property.price }}</td>
+                    <td style="padding: 15px;"><span style="background: #e8f5e9; color: #2e7d32; padding: 4px 10px; border-radius: 20px; font-size: 12px;">Active</span></td>
+                    <td style="padding: 15px;">
+                        <button style="color: var(--secondary); border: none; background: none; cursor: pointer; margin-right: 10px;"><i class="fas fa-edit"></i></button>
+                        <button style="color: #e74c3c; border: none; background: none; cursor: pointer;"><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</div>
+{% endblock %}
